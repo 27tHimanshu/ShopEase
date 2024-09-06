@@ -1,0 +1,80 @@
+# Node.js modules
+node_modules/
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Environment variables
+.env
+
+# Binaries
+dist/
+build/
+
+# Coverage reports
+coverage/
+
+# IDE files (adjust according to your IDE)
+.vscode/
+.idea/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# React build files
+/public/static/
+/public/assets/
+
+# Temporary files
+*.tmp
+*.log
+
+# Mac-specific files
+.DS_Store
+
+# Typescript build artifacts (if using TS in MERN)
+*.tsbuildinfo
+
+# MongoDB data dumps (if stored locally)
+dump/
+
+# Firebase (if using Firebase)
+.firebase/
+.firebaserc
+firebase-debug.log
+
+# ESLint cache (if using ESLint)
+.eslintcache
+
+# Parcel cache (if using Parcel bundler)
+.cache/
+.parcel-cache/
+
+# React Native files (if using RN)
+.expo/
+.expo-shared/
+
+# Local environments
+local.env
+production.env
+development.env
+
+# Optional npm logs
+*.log
+
+# Yarn error logs
+.yarn/
+
+# Dependency directories
+.pnp
+.pnp.js
+
+# Build output
+/out/
+.next/
+
+# Storybook files (if using Storybook)
+storybook-static/
