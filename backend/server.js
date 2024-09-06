@@ -2,12 +2,16 @@
 import express from 'express';
 import { connectDB } from './config/db.js';
 import Product from './models/product.model.js';
+import mongoose from 'mongoose';
 
 const app = express();
+app.use(express.json()); // allows us to accept json data from the req body 
+
+
+
 app.get('/', (req, res) => {
     res.send('hello sweetie how are you ');
 })
-app.use(express.json()); // allows us to accept json data from the req body 
 
 app.get('/api/products', async (req, res) => {
     try{
@@ -55,6 +59,32 @@ app.delete('/api/products/:id' , async(req,res)=>{
         })
     } catch (err) {
         console.log("error in delete product ", err);
+        return res.status(500).json({
+            success: false,
+            error: err,
+            message: "something went wrong in server "
+        })
+    }
+})
+
+app.put('/api/products/:id' , async(req,res)=>{
+    const {id} = req.params  
+    const product = req.body;
+    if( ! mongoose.Types.ObjectId.isValid(id)){
+      return res.status(400).json({
+        success: false,
+        message:"invalid id"
+      })   
+    }
+    try {
+       const updatedProduct  = await Product.findByIdAndUpdate(id , product,{new:true});
+        return res.status(200).json({
+            success: true,
+            message: "product updated successfully",
+             data: updatedProduct
+        })
+    } catch (err) {
+        console.log("error in update product ", err);
         return res.status(500).json({
             success: false,
             error: err,
