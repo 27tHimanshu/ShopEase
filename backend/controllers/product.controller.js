@@ -1,4 +1,4 @@
-import Product from './models/product.model.js';
+import Product from '../models/product.model.js';
 import mongoose from 'mongoose';
 
 export const getProducts = async (req, res) => {
@@ -11,7 +11,7 @@ export const getProducts = async (req, res) => {
             })
         }   
         catch(err){
-           console.log(error , " error in fetching products ");
+           console.log(err , " error in fetching products ");
         } 
     
 }
@@ -42,6 +42,12 @@ export const createProduct = async (req, res) => {
 export const deleteProduct =async(req,res)=>{
     const {id} = req.params
     console.log(id);
+    if( ! mongoose.Types.ObjectId.isValid(id)){
+        return res.status(400).json({
+          success: false,
+          message:"invalid id"
+        })   
+      }
     try {
         await Product.findByIdAndDelete(id);
         return res.status(200).json({
